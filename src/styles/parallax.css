@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 140%;
-  background-image: url('../../public/assets/images/Parallax/parallax.jpg');
+  background-image: url('../../public/assets/images/parallax/parallax.jpg');
   background-size: cover;
   background-position: center 62%;
   background-repeat: no-repeat;
@@ -32,7 +32,7 @@
     180deg,
     rgba(235, 243, 232, 0.78) 0%,
     rgba(235, 243, 232, 0.62) 50%,
-    rgba(235, 243, 232, 0.82) 100%
+    rgba(1, 2, 0, 0.82) 100%
   );
   backdrop-filter: blur(1px);
   z-index: 1;

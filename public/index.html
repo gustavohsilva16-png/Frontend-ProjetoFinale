@@ -4,16 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioCosmetics - Cosméticos Orgânicos e Sustentáveis</title>
-  
-  <script module src="/src/scripts/parallax.js" defer></script>
 
   <!-- ÍCONES LUCIDE -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- LIGAÇÃO COM O ARQUIVO DE ESTILO PRINCIPAL (CSS) -->
   <link rel="stylesheet" href="../src/styles/store.css">
-
-  
 
   <!-- CSS EXCLUSIVO DO EFEITO PARALLAX -->
   <link rel="stylesheet" href="../src/styles/parallax.css">
@@ -63,7 +59,7 @@
     <div class="hero-conteudo">
       <h1>Beleza Natural e Sustentável</h1>
       <p>Cuide da sua pele com produtos 100% orgânicos, livres de crueldade animal e com embalagens biodegradáveis.</p>
-      <a href="./assets/images/Parallax/parallax.jpg" class="btn-principal">Ver Produtos</a>
+      <a href="#produtos" class="btn-principal">Ver Produtos</a>
     </div>
   </section>
 
@@ -73,11 +69,15 @@
     
     <div class="grid-produtos">
       
-      <!-- PRODUTO 1 -->
+      <!-- ============================================================
+           [PRODUTO 1] SABONETE HERBAL
+           Imagem da descrição: ./assets/images/store/natural.soap.png
+           ============================================================ -->
       <div class="card-produto" 
            data-nome="Sabonete Herbal" 
            data-preco="24.90" 
            data-descricao="Sabonete artesanal formulado com óleos vegetais e extratos botânicos. Limpa suavemente mantendo a hidratação natural da pele."
+           data-imagem="./assets/images/store/natural.soap.png"
            data-icone="droplet"
            data-opcoes-tipo="Fragrância"
            data-opcoes="Lavanda, Hortelã, Eucalipto, Alecrim">
@@ -91,12 +91,18 @@
           Adicionar ao Carrinho
         </button>
       </div>
+      <!-- ==================== FIM DO PRODUTO 1 ==================== -->
 
-      <!-- PRODUTO 2 -->
+
+      <!-- ============================================================
+           [PRODUTO 2] SHAMPOO ORGÂNICO
+           Imagem da descrição: ./assets/images/store/pitanga.png
+           ============================================================ -->
       <div class="card-produto" 
            data-nome="Shampoo Orgânico" 
            data-preco="49.90" 
            data-descricao="Creme natural livre de sulfatos e parabenos. Fortalece os fios desde a raiz e devolve o brilho natural."
+           data-imagem="./assets/images/store/pitanga.png"
            data-icone="sparkles"
            data-opcoes-tipo="Tipo de Cabelo"
            data-opcoes="Todos os Tipos, Oleosos, Secos e Danificados">
@@ -110,12 +116,18 @@
           Adicionar ao Carrinho
         </button>
       </div>
+      <!-- ==================== FIM DO PRODUTO 2 ==================== -->
 
-      <!-- PRODUTO 3 -->
+
+      <!-- ============================================================
+           [PRODUTO 3] CREME HIDRATANTE CORPORAL
+           Imagem da descrição: ./assets/images/store/creme.png
+           ============================================================ -->
       <div class="card-produto" 
            data-nome="Creme Hidratante Corporal" 
            data-preco="45.00" 
            data-descricao="Creme ultra-nutritivo com manteiga de karité pura. Absorção rápida, toque aveludado e nutrição prolongada por 24h."
+           data-imagem="./assets/images/store/creme.png"
            data-icone="flower2"
            data-opcoes-tipo="Aroma"
            data-opcoes="Camomila & Mel, Aloe Vera, Sem Fragrância">
@@ -129,6 +141,7 @@
           Adicionar ao Carrinho
         </button>
       </div>
+      <!-- ==================== FIM DO PRODUTO 3 ==================== -->
 
     </div>
   </section>
@@ -139,9 +152,15 @@
       <button id="btn-fechar-produto" class="btn-fechar">&times;</button>
       
       <div class="detalhes-container">
-        <div class="detalhes-icone" id="detalhes-icone">
-          <i data-lucide="package"></i>
+        
+        <!-- ============================================================
+             [IMAGEM DE DESCRIÇÃO DO PRODUTO NO MODAL]
+             Recebe automaticamente a foto do produto clicado (Sabonete, Shampoo ou Creme)
+             ============================================================ -->
+        <div class="detalhes-icone" id="detalhes-icone" style="padding: 0; overflow: hidden; height: 190px; border-radius: 12px;">
+          <img id="detalhes-imagem" src="" alt="Imagem do Produto" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
+        <!-- =============== FIM DA IMAGEM DE DESCRIÇÃO =============== -->
 
         <div class="detalhes-info">
           <h2 id="detalhes-titulo">Nome do Produto</h2>
@@ -296,10 +315,39 @@
   </footer>
 
   <!-- SCRIPT PRINCIPAL DA LOJA -->
-  <script src="./src/scripts/store.js"></script>
+  <script src="../src/scripts/store.js"></script>
+
+  <!-- ============================================================
+       [SCRIPT DE ATUALIZAÇÃO DA IMAGEM NO MODAL DE DESCRIÇÃO]
+       Substitui o ícone pelo atributo data-imagem de cada produto
+       ============================================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card-produto');
+      const detalhesIcone = document.getElementById('detalhes-icone');
+
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          const imagemProduto = card.getAttribute('data-imagem');
+          const nomeProduto = card.getAttribute('data-nome');
+
+          if (imagemProduto && detalhesIcone) {
+            detalhesIcone.innerHTML = `
+              <img 
+                src="${imagemProduto}" 
+                alt="${nomeProduto}" 
+                style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;"
+              >
+            `;
+          }
+        });
+      });
+    });
+  </script>
+  <!-- ================ FIM DO SCRIPT DA IMAGEM ================== -->
 
   <!-- SCRIPT DO EFEITO PARALLAX -->
-  <script src="./src/scripts/parallax.js"></script>
+  <script src="../src/scripts/parallax.js"></script>
 
 </body>
 </html>
